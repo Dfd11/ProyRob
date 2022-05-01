@@ -1,8 +1,0 @@
-prefix=/home/dfd/ProyRob/install
-
-Name: roboclaw_driver
-Description: Description of roboclaw_driver
-Version: 0.5.0
-Cflags: 
-Libs: -L${prefix}/lib 
-Requires: 

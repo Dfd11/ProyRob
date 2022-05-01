@@ -1,2 +1,0 @@
-
--DCATKIN_DEVEL_PREFIX=/home/dfd/ProyRob/devel -DCMAKE_INSTALL_PREFIX=/home/dfd/ProyRob/install -G Unix Makefiles

@@ -1,0 +1,10 @@
+ <launch>
+   <group ns="control">
+      <node respawn="true" pkg="joy" type="joy_node" name="joy_node" >
+         <param name="dev" type="string" value="/dev/input/js2" />
+
+      </node>
+
+      <node pkg="control" type="conversion.py" name="conversion"/>
+   </group>
+</launch>

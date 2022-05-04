@@ -7,4 +7,8 @@
 
       <node pkg="control" type="conversion.py" name="conversion"/>
    </group>
+
+   <group ns="vision">
+   </group>
+
 </launch>

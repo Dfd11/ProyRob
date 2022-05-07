@@ -1,13 +1,14 @@
 #!/usr/bin/env python
 import rospy
 from geometry_msgs.msg import Twist
-const_L=1
-const_R=1
+const_L=0.422148
+const_R=0.061595
 kp=1
 ki=0.0
 kd=0.0
 Freq=10
 elapsed_time = 1.0/Freq
+MAX_ANG_VEL = 15
 class PIDClass():
     def __init__(self):
         rospy.on_shutdown(self.cleanup)
@@ -59,7 +60,17 @@ class PIDClass():
     def update_setpoint(self, msg):
         self.setpoint_wl=(2*msg.linear.x - msg.angular.z*const_L)/(2*const_R)
         self.setpoint_wr=(2*msg.linear.x + msg.angular.z*const_L)/(2*const_R)
+        if (self.setpoint_wl > MAX_ANG_VEL):
+            self.setpoint_wl = MAX_ANG_VEL
 
+        if (self.setpoint_wr > MAX_ANG_VEL):
+            self.setpoint_wr = MAX_ANG_VEL
+
+        if (self.setpoint_wl < -MAX_ANG_VEL):
+            self.setpoint_wl = -MAX_ANG_VEL
+
+        if (self.setpoint_wr < -MAX_ANG_VEL):
+            self.setpoint_wr = -MAX_ANG_VEL
     def update_current(self, msg):
         self.current_wl = msg.angular.x
         self.current_wr = msg.angular.y

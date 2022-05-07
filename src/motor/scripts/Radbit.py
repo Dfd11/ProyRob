@@ -3,7 +3,7 @@ import rospy
 from geometry_msgs.msg import Twist
 Freq = 10
 max_bit = 127.0
-max_rad = 2.5
+max_rad = 15
 class RadbitClass():
     def __init__(self):
         rospy.on_shutdown(self.cleanup)

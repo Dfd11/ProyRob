@@ -2,9 +2,12 @@
 import rospy
 from geometry_msgs.msg import Twist
 Freq = 10
-max_bit = 127.0
-max_rad = 2.5
-class RadbitClass():
+max_bitBR = 11870
+max_bitBL = 11640
+max_bitFR = 11050
+max_bitFL = 1 #not working
+max_rad = 15
+class BitradClass():
     def __init__(self):
         rospy.on_shutdown(self.cleanup)
 
@@ -18,8 +21,8 @@ class RadbitClass():
             r.sleep()
 
     def update_current(self, msg):
-        bits_l = msg.angular.x * max_rad / max_bit
-        bits_r = msg.angular.y * max_rad / max_bit
+        bits_l = msg.angular.x * max_rad / max_bitBL
+        bits_r = msg.angular.y * max_rad / max_bitBR
         out = Twist()
         out.angular.x=bits_l
         out.angular.y=bits_r
@@ -33,6 +36,6 @@ class RadbitClass():
         pass
 ############################### MAIN PROGRAM ####################################
 if __name__ == "__main__":
-    rospy.init_node("Rad_to_bit_node", anonymous=True)
-    RadbitClass()
+    rospy.init_node("Bit_to_rad_node", anonymous=True)
+    BitradClass()
 

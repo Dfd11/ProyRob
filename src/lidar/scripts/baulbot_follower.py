@@ -42,8 +42,8 @@ class LidarClass():
             self.my_vel.linear.x = 0
             self.my_vel.angular.z = 0
             #self.pub_cmdvel.publish(self.my_vel) 
-        else:
-            if closest_range >= 0.50:
+        elif closest_range <= 2.0:
+            if closest_range >= 0.60:
                 angleMin = -0.07*closest_angle
                 angleMax = 0.07*closest_angle
                 if closest_angle <= angleMax or closest_angle >= angleMin:
@@ -59,6 +59,10 @@ class LidarClass():
                 self.my_vel.linear.x = 0
                 self.my_vel.angular.z = 0
             #self.pub_cmdvel.publish(self.my_vel)
+	else:
+	    self.my_vel.linear.x = 0
+            self.my_vel.angular.z =0 
+
         self.pub_cmdvel.publish(self.my_vel)
 
     def cleanup(self): 

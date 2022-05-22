@@ -3,7 +3,7 @@
       <remap from="in_A" to="/control/speed"/>
       <remap from="in_B" to="/vision/speed"/>
       <remap from="in_Sel" to="/control/joy"/>
-      <remap from="out" to="/motor/speed"/>
+      <remap from="out" to="/motor/speed_rad"/>
    </node>
    <!--
    <node pkg="rosserial_python" type="serial_node.py" name="rosserial"/>

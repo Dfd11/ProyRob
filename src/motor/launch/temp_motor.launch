@@ -1,6 +1,8 @@
  <launch>
    <group ns="motor">
+      <node pkg="motor" type="PID.py" name="PID_node"/>
       <node pkg="motor" type="Radbit.py" name="Rad_to_bit_node"/>
+      <node pkg="motor" type="Bitrad.py" name="Bit_to_rad_node"/>
       
    </group>
 </launch>

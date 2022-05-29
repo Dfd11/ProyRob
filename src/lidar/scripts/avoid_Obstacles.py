@@ -9,8 +9,8 @@ class AvoidObstacleClass():
         rospy.on_shutdown(self.cleanup) 
 
         ####################### PUBLISEHRS AND SUBSCRIBERS ############################ 
-        rospy.Subscriber("base_scan", LaserScan, self.laser_cb) 
-        self.cmd_vel_pub = rospy.Publisher("cmd_vel", Twist, queue_size=1)
+        rospy.Subscriber("scan", LaserScan, self.laser_cb) 
+        self.cmd_vel_pub = rospy.Publisher("speed_OA", Twist, queue_size=1)
         
         ######################## CONSTANTS AND VARIABLES ############################## 
 

@@ -4,7 +4,8 @@
 		<include file="$(find rplidar_ros)/launch/rplidar.launch"/> 
 		<node pkg="tf2_ros" type="static_transform_publisher" name="lidar" args="0 0 0 3.1416 0 0 laser lidar_correct"/>
 		<node pkg="tf2_ros" type="static_transform_publisher" name="base" args="0.25 0 0 0 0 0 lidar_correct base"/>
-		<node name="follower" pkg="lidar" type="baulbot_follower.py" outpt="screen"/>
+		<!--<node name="follower" pkg="lidar" type="baulbot_follower.py" outpt="screen"/>-->
+		<node name="Obstacle_avoid" pkg="lidar" type="avoid_Obstacles.py" outpt="screen">
 
 	</group>
 

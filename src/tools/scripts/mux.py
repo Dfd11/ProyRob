@@ -21,20 +21,29 @@ class MuxClass():
         rospy.on_shutdown(self.cleanup)
         rospy.Subscriber("in_A", Twist, self.A_cb)
         rospy.Subscriber("in_B", Twist, self.B_cb)
+        rospy.Subscriber("in_C", Twist, self.C_cb)
+        #ADD MORE LINES FOR MORE OPTIONS
         rospy.Subscriber("in_Sel", Joy, self.sel_cb)
         self.pub_out = rospy.Publisher('out',Twist,queue_size=1)
 
         self.A=Twist()
         self.B=Twist()
-        self.sel=0
+        self.C=Twist()
+        #ADD MORE LINES FOR MORE OPTIONS
+        self.selA=0
+        self.selB=0
+        self.selC=0
+        #ADD MORE LINES FOR MORE OPTIONS
         self.out=Twist()
         #********** INIT NODE **********###
         r = rospy.Rate(10) #1Hz
         while not rospy.is_shutdown():
-            if (self.sel == 0):
-                self.out=self.A
-            else:
+            if (self.selB == 1):
                 self.out=self.B
+            elif(self.selC == 1):
+                self.out=self.C
+            else:
+                self.out=self.A
 
             self.pub_out.publish(self.out)
 
@@ -45,16 +54,27 @@ class MuxClass():
     def B_cb(self,msg):
         self.B=msg
 
+    def C_cb(self,msg):
+        self.C=msg
+
+#    def X_cb(self,msg):
+#        self.X=msg
+     #ADD MORE LINES FOR MORE OPTIONS
+
     def sel_cb(self,msg):
         if (msg.buttons[BTN_A]):
-            self.sel=1-self.sel
+            self.selB=1-self.selB
+            self.selC = 0
+            #ADD MORE LINES FOR MORE OPTIONS
+        elif (msg.buttons[BTN_B]):
+            self.selB = 0
+            self.selC=1-self.selC
+            #ADD MORE LINES FOR MORE OPTIONS
+        else :
+            self.selB = 0
+            self.selC = 0
+            #ADD MORE LINES FOR MORE OPTIONS
 
-            if (self.sel == 0):
-                self.out=self.A
-            else:
-                self.out=self.B
-
-            self.pub_out.publish(self.out)
     def cleanup(self):
         self.pub_out.publish(Twist())
         pass

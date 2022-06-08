@@ -83,10 +83,10 @@ class MuxClass():
             self.selB = 0
             self.selC = 0
             self.selD = 1 - self.selD
-        else :
-            self.selB = 0
-            self.selC = 0
-            self.selD = 0
+        #else :
+        #    self.selB = 0
+        #    self.selC = 0
+        #    self.selD = 0
             #ADD MORE LINES FOR MORE OPTIONS
 
     def cleanup(self):

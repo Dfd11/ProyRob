@@ -14,7 +14,7 @@ class AvoidObstacleClass():
         
         ######################## CONSTANTS AND VARIABLES ############################## 
 
-        v_desired = 2.0 #2.65 # m/s
+        Kv = 0.5 #2.65 # m/s
         kw = 0.65 #Angular velocity gain
         
         self.closest_angle = 0.0 #Angle to the closest object
@@ -28,18 +28,18 @@ class AvoidObstacleClass():
             theta_closest=self.closest_angle
             #limit the angle to -pi pi
             if np.isinf(range):
-                vel_msg.linear.x = v_desired
+                vel_msg.linear.x  = Kv
                 vel_msg.angular.z = 0
                 print("Inf")
             else:
-                if (theta_closest <= (np.pi)/2 or theta_closest >= -(np.pi)/2) and (range >= 0.4 and range <= 2):
+                if (theta_closest <= (np.pi)/2 or theta_closest >= -(np.pi)/2) and (range >= 0.4 and range <= 1.5):
                     theta_AO = theta_closest - np.pi
                     theta_AO = np.arctan2(np.sin(theta_AO), np.cos(theta_AO))
-                    vel_msg.linear.x = v_desired
+                    vel_msg.linear.x = Kv * range
                     vel_msg.angular.z = kw * theta_AO
                     print("Avoid")
-                elif (theta_closest > (np.pi)/2 or theta_closest < -(np.pi)/2) and (range > 2):
-                    vel_msg.linear.x = v_desired
+                elif (theta_closest > (np.pi)/2 or theta_closest < -(np.pi)/2) and (range > 1.5):
+                    vel_msg.linear.x = Kv * range
                     vel_msg.angular.z = 0
                     print("No obstacle")
                 elif(range < 0.4):
@@ -47,7 +47,7 @@ class AvoidObstacleClass():
                     vel_msg.angular.z = 0
                     print("No movement")
                 else:
-                    vel_msg.linear.x = v_desired
+                    vel_msg.linear.x = Kv * range
                     vel_msg.angular.z = 0
                     print("No obstacle")
 

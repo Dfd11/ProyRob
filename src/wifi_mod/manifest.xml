@@ -1,0 +1,13 @@
+<package>
+  <description brief="wifi_mod">
+
+     wifi_mod
+
+  </description>
+  <author>david</author>
+  <license>BSD</license>
+  <review status="unreviewed" notes=""/>
+  <url>http://ros.org/wiki/wifi_mod</url>
+  <depend package="rospy"/>
+
+</package>

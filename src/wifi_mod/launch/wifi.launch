@@ -1,0 +1,5 @@
+ <launch>
+   <group ns="vision">
+      <node pkg="wifi_mod" type="baulbot.py" name="baulbot"/>
+   </group>
+</launch>

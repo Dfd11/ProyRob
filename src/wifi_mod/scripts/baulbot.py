@@ -114,3 +114,6 @@ class Baulbot():
         # Example: stop the robot before finishing a node.
         self.pub.publish(Twist())
         pass
+if __name__ == "__main__":
+    rospy.init_node("Baulbot_node",anonymous=True)
+    Baulbot()

@@ -56,8 +56,9 @@ class LidarClass():
                     self.my_vel.angular.z = 0
                 #self.pub_cmdvel.publish(self.my_vel)
             else:
+		Kw = 2.65
                 self.my_vel.linear.x = 0
-                self.my_vel.angular.z = 0
+                self.my_vel.angular.z = Kw * closest_angle
             #self.pub_cmdvel.publish(self.my_vel)
 	else:
 	    self.my_vel.linear.x = 0
